@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin:  0;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  color: black;
+  background: url('./assets/img/bg3.jpeg') center center/cover no-repeat;
+  background-color: 	#F0F0F0;
+  max-height: 2px;
+  height: 100%;
+  font-size: 18px;
+}
+
+.container {
+  margin: 0 auto;
+  width: 600px;
+  .title {
+    color: white;
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+  }
+  .appWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 20px 0 50px;
+    margin: 30px 0 5px;
+    border-radius: 5px;
+    .addBtn {
+    }
+  }
+  .todolistItem {
+    text-align: center;
+  }
+  .filterBtnWrap {
+    display: flex;
+    justify-content: space-between;
+  }
+}
