@@ -32,10 +32,7 @@ const TodoItem = (props) => {
       >
         <ListItemButton
           className={styles.wrap}>
-          <div>
-            <Checkbox
-              inputProps={{'aria-label': 'controlled'}}
-            />
+          <div className={styles.itemWrap}>
             {text}
           </div>
           <div>

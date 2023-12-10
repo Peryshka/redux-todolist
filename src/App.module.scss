@@ -40,5 +40,15 @@ body {
   .filterBtnWrap {
     display: flex;
     justify-content: space-between;
+    padding: 20px 20px;
+    background-color: white;
+    button {
+      color: grey;
+      background: white;
+      font-size: 16px;
+      border: none;
+    }
   }
 }
+
+

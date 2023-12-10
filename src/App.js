@@ -8,12 +8,14 @@ import {getTodos} from "./redux/todo/selectors";
 import {addTodo, deleteTodo, toggleTodo} from "./redux/todo/actions";
 import TodoItem from "./components/todo-item";
 import Typography from '@mui/material/Typography';
-import FilterButtons from "./components/filter-buttons";
-import {filterTodoActionCreator} from "./redux/filter/actions";
+import {FILTER_TYPE} from "./redux/todo-filter/reducers";
+import {todoFilter} from "./redux/todo-filter/actions";
+import {getActiveFilter} from "./redux/todo-filter/selectors";
 
 function App() {
   const [value, setValue] = useState([]);
   const todos = useSelector(getTodos);
+  const filterTodos = useSelector(getActiveFilter);
   const dispatch = useDispatch();
   const handleChange = (value) => {
     setValue(value)
@@ -43,8 +45,17 @@ function App() {
     dispatch(deleteTodo(id))
   }
 
-  const handleFilterTodo = (filter) => {
-     dispatch(filterTodoActionCreator(filter))
+  const filterTodoFunc = (todos, filter) => {
+    if (filter === FILTER_TYPE.SHOW_ALL) {
+      return todos
+    }
+    if (filter === FILTER_TYPE.SHOW_ACTIVE) {
+      return todos.filter(todo => !todo.isComplete)
+    }
+    if (filter === FILTER_TYPE.SHOW_COMPLETED) {
+      return todos.filter(todo => todo.isComplete)
+    }
+    return todos
   }
 
   return (
@@ -68,7 +79,7 @@ function App() {
         </ButtonComponent>
       </div>
       <div className={styles.todolistItem}>
-        {todos.map((todo) => (
+        {filterTodoFunc(todos, filterTodos).map((todo) => (
           <TodoItem
             text={todo.text}
             isComplete={todo.isComplete}
@@ -78,15 +89,16 @@ function App() {
         ))}
       </div>
       <div className={styles.filterBtnWrap}>
-        <FilterButtons onClick={() => handleFilterTodo ('SHOW_All')}>All</FilterButtons>
-        <FilterButtons onClick={() => handleFilterTodo ('SHOW_ACTIVE')}>Active</FilterButtons>
-        <FilterButtons onClick={() => handleFilterTodo ('SHOW_COMPLETED')}>Completed</FilterButtons>
-        <FilterButtons>Clear Completed</FilterButtons>
+        <button onClick={() => dispatch(todoFilter(FILTER_TYPE.SHOW_ALL))}>All</button>
+        <button onClick={() => dispatch(todoFilter(FILTER_TYPE.SHOW_ACTIVE))}>Active</button>
+        <button onClick={() => dispatch(todoFilter(FILTER_TYPE.SHOW_COMPLETED))}>Completed</button>
       </div>
     </div>
   );
 }
 
 export default App;
+
+
 
 
