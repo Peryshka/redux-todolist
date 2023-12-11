@@ -1,9 +1,7 @@
 import React from 'react';
-import Button from '../../components/button';
 import styles from './style.module.scss';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
-import Checkbox from '@mui/material/Checkbox';
 import ClearIcon from '@mui/icons-material/Clear';
 
 const TodoItem = (props) => {
