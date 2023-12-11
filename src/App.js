@@ -64,7 +64,7 @@ function App() {
         variant="h2"
         component="h2"
         className={styles.title}>
-        TODO
+        TODOLIST
       </Typography>
       <div className={styles.appWrap}>
         <MainInput
